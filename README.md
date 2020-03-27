@@ -21,7 +21,6 @@ $ yarn generate
 
 For detailed explanation on how things work, check out [Nuxt.js docs](https://nuxtjs.org).
 
-Demo: http://imhio.emirit.ru/
 
 ## Комментарии по тестовому заданию
 ### Выполненные пункты
@@ -32,3 +31,6 @@ Demo: http://imhio.emirit.ru/
 
 ### Затраченное время
 - в сумме затрачено порядка 6 часов
+
+### Ссылка на демо
+http://imhio.emirit.ru/
