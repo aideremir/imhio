@@ -30,11 +30,11 @@
         <div>Added: {{ movie.added }}</div>
         <div>Duration: {{ movie.duration }}</div>
       </div>
-      <div class="movie-card__description">
+      <h3 class="movie-card__description">
         {{ movie.description }}
-      </div>
+      </h3>
       <div class="movie-card__tags">
-        <MovieTags :tags="movie.tag" />
+        <MovieTags :tags="tags" />
       </div>
       <button class="movie-card__button" @click="showInfo">
         More info
@@ -71,6 +71,11 @@ export default {
   data () {
     return {
       extraHeight: 0
+    }
+  },
+  computed: {
+    tags () {
+      return this.movie.tag.slice(0, 6)
     }
   },
   watch: {
@@ -122,8 +127,9 @@ export default {
   }
 
   &__description {
-    margin-bottom: 10px;
+    margin: 0 0 10px 0;
     font-size: 14px;
+    font-weight: normal;
     line-height: 16px;
     white-space: nowrap;
     overflow: hidden;
@@ -131,6 +137,7 @@ export default {
   }
 
   &__tags {
+    // TODO: add function in JS to truncate tags depending on container width
     height: 24px; // two paddings + line height
     overflow: hidden;
     margin-bottom: 8px;
@@ -148,6 +155,8 @@ export default {
     background: @bg-accent-2;
     border-radius: 3px;
     color: @text-color;
+    font-size: 14px;
+    line-height: 16px;
     border: none;
 
     &:hover {

@@ -1,6 +1,8 @@
 <template>
   <header class="header">
-    <nuxt-link to="/" class="header__logo">OZEEX</nuxt-link>
+    <nuxt-link to="/" class="header__logo">
+      OZEEX
+    </nuxt-link>
   </header>
 </template>
 

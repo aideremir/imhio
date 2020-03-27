@@ -1,6 +1,6 @@
 <template>
   <div class="movie-pics" @click="toggleSlideshow">
-    <img :src="currentPicturePath" :alt="currentPictureAlt">
+    <img :src="currentPicturePath" :alt="movie.description">
   </div>
 </template>
 
@@ -26,9 +26,6 @@ export default {
   computed: {
     currentPicturePath () {
       return this.movie.picture[this.index].path
-    },
-    currentPictureAlt () {
-      return `${this.movie.description} ${this.index + 1}`
     }
   },
   watch: {

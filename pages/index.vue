@@ -9,11 +9,14 @@
 </template>
 
 <script>
+import AllMovies from '~/assets/data/result.js' // importing data instead of real backend server
+
 import MoviesHeader from '~/components/catalog/MoviesHeader'
 import Spinner from '~/components/layout/Spinner'
 import MovieCards from '~/components/catalog/MovieCards'
 
 const MOVIES_LIMIT = 12
+const META_KEYWORDS_LIMIT = 20
 
 export default {
   components: {
@@ -24,38 +27,31 @@ export default {
   data () {
     return {
       isDataLoading: false,
-      info: null,
-      movies: [],
-      allMovies: [],
-      offset: 0
+      info: AllMovies.info,
+      allMovies: AllMovies.item,
+      movies: AllMovies.item.slice(0, MOVIES_LIMIT),
+      offset: MOVIES_LIMIT
     }
   },
   computed: {
     canLoadMore () {
       return this.movies.length < this.allMovies.length || this.offset === 0
+    },
+    metaKeywords () {
+      let tags = []
+      for (let i = 0; i < MOVIES_LIMIT; i++) {
+        tags = tags.concat(this.movies[i].tag)
+      }
+      return [...new Set(tags)].slice(0, META_KEYWORDS_LIMIT).join(',')
     }
   },
   mounted () {
-    this.getAll()
-    this.getPage()
     window.addEventListener('scroll', this.watchScroll)
   },
   destroyed () {
     window.removeEventListener('scroll', this.watchScroll)
   },
   methods: {
-    // Imitating per-page loading by fetching all data and then loading slices on scroll
-    async getAll () {
-      const response = await fetch('/result.json')
-      if (!response.ok) {
-        alert('Error loading data!')
-        this.isDataLoading = false
-        return
-      }
-      const data = await response.json()
-      this.allMovies = data.item
-      this.info = data.info
-    },
     getPage () {
       if (!this.canLoadMore) {
         return
@@ -81,6 +77,15 @@ export default {
       if (offset >= height) {
         this.getPage()
       }
+    }
+  },
+  head () {
+    return {
+      title: `Best ${this.info.search_term} porn movies`,
+      meta: [
+        { name: 'description', content: `Best ${this.info.search_term} porn movies. ${this.metaKeywords}` },
+        { name: 'keywords', content: this.metaKeywords }
+      ]
     }
   }
 }
