@@ -103,6 +103,7 @@ export default {
 .movie-card {
   &__image {
     margin-bottom: 5px;
+    min-height: 135px;
 
     img {
       display: block;

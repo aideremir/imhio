@@ -21,6 +21,8 @@ $ yarn generate
 
 For detailed explanation on how things work, check out [Nuxt.js docs](https://nuxtjs.org).
 
+Demo: http://imhio.emirit.ru/
+
 ## Комментарии по тестовому заданию
 ### Выполненные пункты
 - По ТЗ выполнены практически все пункты (создана адаптивная страница по макету, данные подтягиваются из файла примера,
