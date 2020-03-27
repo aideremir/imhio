@@ -15,7 +15,8 @@
   "dependencies": {
     "less": "^3.11.1",
     "less-loader": "^5.0.0",
-    "nuxt": "^2.0.0"
+    "nuxt": "^2.0.0",
+    "v-scroll-lock": "^1.1.0"
   },
   "devDependencies": {
     "@nuxtjs/eslint-config": "^2.0.0",

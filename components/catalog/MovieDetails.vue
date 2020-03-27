@@ -1,5 +1,5 @@
 <template>
-  <div class="movie-details">
+  <div v-scroll-lock="true" class="movie-details">
     <button class="movie-details__close" @click="close">
       &times;
     </button>
@@ -66,19 +66,24 @@ export default {
   padding: 9px;
   background: @bg-body;
 
+  // considering 576px is the breakpoint for phones
   @media (max-width: 576px) {
     padding-top: 30px;
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    overflow: auto;
   }
 
   &__close {
     display: none;
-    position: absolute;
+    position: fixed;
     top: 0;
     right: 0;
     width: 30px;
     height: 30px;
     color: @text-color;
-    background: transparent;
+    background: @bg-body;
     border: none;
     font-size: 22px;
     cursor: pointer;
@@ -96,13 +101,6 @@ export default {
       justify-content: center;
       margin-bottom: 15px;
     }
-  }
-
-  // considering 576px is the breakpoint for phones
-  @media (max-width: 576px) {
-    position: fixed; // TODO: lock scroll on body
-    top: 0;
-    bottom: 0;
   }
 
   &__details {
